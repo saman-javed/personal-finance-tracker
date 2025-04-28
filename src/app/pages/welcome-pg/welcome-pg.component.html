@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlay Welcome</title>
+    <link rel="stylesheet" href="welcome-pg.component.css">
+</head>
+<body>
+
+    <div class="overlay">
+        <div class="overlay-content">
+            <h1 class="title">Welcome!</h1>
+            <p class="desp">Get started by signing in or creating an account</p>
+            <div class="button-group">
+                <button class="btn btn-signin" (click)="goToLoginPage()">Sign In</button>
+                <button class="btn btn-signup"(click)="goToRegisterPage()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

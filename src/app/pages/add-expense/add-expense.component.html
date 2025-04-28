@@ -1,0 +1,48 @@
+<div class="head-sec" *ngIf="!isVisualView"><h6 id="heading">Add Expenses Here</h6></div>
+
+<div *ngIf="!isVisualView" class="expenses-container">
+  <div class="expense-list">
+    <div *ngFor="let expense of expenses; let i = index" class="expense-item">
+      <span class="emoji">{{ expense.categoryEmoji }}</span>
+      <span class="category">{{ expense.category }}</span>
+      <span class="amount">${{ expense.amount | number:'1.2-2' }}</span>
+      <button class="delete-btn" (click)="deleteExpense(i)">✕</button>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="isVisualView" class="visual-view-container">
+  <app-expense-visual [expenses]="expenses"></app-expense-visual>
+  <button class="back-btn" (click)="backToList()">Back to List</button>
+</div> -->
+
+<div class="button-group">
+  <button class="add-btn" (click)="openPopup()">+</button>
+  <button class="see-btn" (click)="toggleVisualView()">See Visually</button>
+</div>
+
+<app-add-expense 
+  [isOpen]="isPopupOpen" 
+  (closePopup)="onClosePopup()"
+  (saveExpense)="onSaveExpense($event)">
+</app-add-expense>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

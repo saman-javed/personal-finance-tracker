@@ -1,0 +1,33 @@
+ <div class="visual-container">
+    <div class="total-section">
+      <h2>Total Expenses</h2>
+      <div class="total-amount">${{ totalExpenses | number: '1.2-2' }}</div>
+
+    </div>
+  
+    <div class="chart-section" *ngIf="expenses.length > 0">
+      <h2>Expense Breakdown</h2>
+      <div class="chart-container">
+        <canvas
+          *ngIf="pieChartConfig"
+          baseChart
+          [data]="pieChartConfig.data"
+          [type]="pieChartConfig.type"
+          [options]="pieChartConfig.options">
+        </canvas>
+      </div>
+    </div>
+
+
+  
+    <div class="expense-list-section">
+      <h2>All Expenses</h2>
+      <div class="expense-list">
+        <div *ngFor="let expense of expenses" class="expense-item">
+          <span class="emoji">{{ expense.categoryEmoji }}</span>
+          <span class="category">{{ expense.category }}</span>
+          <span class="amount">${{ expense.amount.toFixed(2) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,28 @@
+<div class="popup" *ngIf="isOpen">
+    <button class="close-btn" (click)="close()">×</button>
+    <h2>Add New Expense</h2>
+    
+    <div class="category-selector">
+      <h3>Select Category</h3>
+      <div class="emoji-grid">
+        <button 
+          *ngFor="let cat of categories" 
+          (click)="selectCategory(cat)"
+          [class.selected]="selectedCategory === cat.name">
+          {{ cat.emoji }}
+        </button>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Category Name</label>
+      <input type="text" [(ngModel)]="selectedCategory" readonly>
+    </div>
+  
+    <div class="form-group">
+      <label>Amount</label>
+      <input type="number" [(ngModel)]="amount" placeholder="0.00">
+    </div>
+  
+    <button class="save-btn" (click)="save()">Save Expense</button>
+  </div>

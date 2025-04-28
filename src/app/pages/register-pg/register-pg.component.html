@@ -1,0 +1,117 @@
+<div class="signup-container">
+    <form class="signup-form" (ngSubmit)="onSignUp(signupForm)" #signupForm="ngForm">
+      <h2>Create Your Account</h2>
+  
+      <!-- Full Name Field -->
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="name"
+          #nameInput="ngModel"
+          required
+          minlength="3"
+          placeholder="Enter your full name"
+          [class.is-invalid]="(signupForm.submitted && nameInput.invalid) || (nameInput.touched && nameInput.invalid)"
+        />
+        @if ((signupForm.submitted && nameInput.invalid) || (nameInput.touched && nameInput.invalid)) {
+          <div class="error-message">
+            @if (nameInput.errors?.['required']) {
+              <div>Full name is required</div>
+            }
+            @if (nameInput.errors?.['minlength']) {
+              <div>Minimum 3 characters required</div>
+            }
+          </div>
+        }
+      </div>
+  
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          #emailInput="ngModel"
+          required
+          email
+          placeholder="Enter your email"
+          [class.is-invalid]="(signupForm.submitted && emailInput.invalid) || (emailInput.touched && emailInput.invalid)"
+        />
+        @if ((signupForm.submitted && emailInput.invalid) || (emailInput.touched && emailInput.invalid)) {
+          <div class="error-message">
+            @if (emailInput.errors?.['required']) {
+              <div>Email is required</div>
+            }
+            @if (emailInput.errors?.['email']) {
+              <div>Please enter a valid email</div>
+            }
+          </div>
+        }
+      </div>
+  
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          #passwordInput="ngModel"
+          required
+          minlength="6"
+          placeholder="Enter your password"
+          [class.is-invalid]="(signupForm.submitted && passwordInput.invalid) || (passwordInput.touched && passwordInput.invalid)"
+        />
+        @if ((signupForm.submitted && passwordInput.invalid) || (passwordInput.touched && passwordInput.invalid)) {
+          <div class="error-message">
+            @if (passwordInput.errors?.['required']) {
+              <div>Password is required</div>
+            }
+            @if (passwordInput.errors?.['minlength']) {
+              <div>Password must be at least 6 characters</div>
+            }
+          </div>
+        }
+      </div>
+  
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          #confirmPasswordInput="ngModel"
+          required
+          placeholder="Confirm your password"
+          [class.is-invalid]="(signupForm.submitted && confirmPasswordInput.errors?.['required']) || 
+                             (signupForm.submitted && password !== confirmPassword) ||
+                             (confirmPasswordInput.touched && password !== confirmPassword && confirmPassword)"
+        />
+        
+        @if (signupForm.submitted && confirmPasswordInput.errors?.['required']) {
+          <div class="error-message">
+            Confirm Password is required
+          </div>
+        }
+        @else if ((signupForm.submitted && password !== confirmPassword) || 
+                  (confirmPasswordInput.touched && password !== confirmPassword && confirmPassword)) {
+          <div class="error-message">
+            Passwords do not match
+          </div>
+        }
+      </div>
+      
+      <button type="submit">Sign Up</button>
+      <p class="login-link">
+        Already have an account? <a (click)="goToLoginPage()">Sign In here</a>
+      </p>
+    </form>
+  </div>
